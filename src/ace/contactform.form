@@ -1,0 +1,16 @@
+form Contact Form
+method post
+action http://google.com
+header Contact Us
+field
+    name name
+    type textbox
+    required
+    placeholder Please fill your name
+    value John Doe
+    validations
+        maxlength 30
+        minlenght 10
+    end validations
+
+end field

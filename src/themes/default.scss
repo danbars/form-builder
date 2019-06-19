@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url("https://use.fontawesome.com/releases/v5.8.2/css/solid.css");
+@import url("https://use.fontawesome.com/releases/v5.8.2/css/brands.css");
+@import url("https://use.fontawesome.com/releases/v5.8.2/css/fontawesome.css");
+
+.fb-theme-default {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  * {
+    box-sizing: border-box;
+  }
+  h1 {
+    text-align: center;
+    font-weight: 400;
+    margin: 1em 0;
+    font-size: 2em;
+  }
+
+  h2 {
+    font-weight: 400;
+    font-size: 1.5em;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 0.25em 0;
+  }
+
+  input,
+  label {
+    display: block;
+  }
+  textarea,
+  input {
+    font-size: 1em;
+    padding: 0.5em;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+    &:focus {
+      box-shadow: rgba(0, 100, 255, 0.5) 0 0 4px 0;
+      outline: none;
+      border: 1px solid rgba(0,100,255,0.3);
+      transition: all 0.3s ease-in-out;
+    }
+    &::placeholder {
+      color: #b7b7b7;
+    }
+    &[type="submit"] {
+      width: auto;
+      padding: 10px 30px;
+      min-width: 200px;
+      font-size: 1.3em;
+      color: white;
+      background-color: rgba(0, 100, 255, 1);
+      margin: 40px auto;
+      cursor: pointer;
+    }
+  }
+
+  span.form-hint {
+    font-size: 0.7em;
+  }
+  div.form-field {
+    margin: 10px 0;
+    padding: 10px;
+    &:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+  }
+
+  abbr.required {
+    color: #A41300;
+    text-decoration: none;
+  }
+  div.input-wrapper {
+    position: relative;
+    &.with-icon {
+      textarea,
+      input {
+        padding-left: 2.3em;
+        &:focus + i {
+          color: rgba(0, 100, 255, 0.5);
+          transition: all 0.3s ease-in-out;
+        }
+      }
+      i {
+        transition: all 0.3s ease-in-out;
+        position: absolute;
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 1.2em;
+        left: 0.5em;
+        top: 0;
+        line-height: 1.2em;
+        margin-top: 0.42em; /* 1/1.2*0.5 em is now x1.2 of the input field, because font-size is changed here*/
+        transform: translateY(-0.1em); /* because we have 0.2em more than the font in the input field*/
+      }
+    }
+  }
+}

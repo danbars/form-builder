@@ -1,0 +1,19 @@
+{
+  "name": "form-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ace": "file:ace",
+    "nearley": "^2.16.0",
+    "uglipop": "^1.0.0"
+  },
+  "devDependencies": {
+    "scss": "^0.2.4"
+  }
+}
