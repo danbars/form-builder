@@ -6,16 +6,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    "build_grammar": "nearleyc src/parser/grammar.ne -o src/parser/grammar.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ace": "file:ace",
-    "nearley": "^2.16.0",
-    "uglipop": "^1.0.0"
+    "nearley": "^2.16.0"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1",
     "scss": "^0.2.4"
   }
 }
