@@ -5,8 +5,9 @@
   "homepage": "https://danbars.github.io/form-builder",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    "build_grammar": "nearleyc src/parser/grammar.ne -o src/parser/grammar.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build_grammar": "nearleyc src/parser/grammar.ne -o src/parser/grammar.js",
+    "build_ace": "cd ./ace/;npm i;node ./Makefile.dryice.js --target ../src/ace;cd .."
   },
   "author": "",
   "license": "ISC",
