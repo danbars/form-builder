@@ -28,7 +28,7 @@ The resulting forms do not have any dependency on any external css library or js
 
 ## How can I handle the submissions?
 If you have your own site backend that you're happy with - great, just use it.
-You can also use (form-data)[https://www.form-data.com] - forms backend service that handle the submissions, does spam filter, auto-respond to your users, sends you notifications, and more.
+You can also use [form-data](https://www.form-data.com) - forms backend service that handle the submissions, does spam filter, auto-respond to your users, sends you notifications, and more.
 
 ## Enough talking, I want to see it
 Just go to [the builder](./src/index.html)
