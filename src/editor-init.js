@@ -31,9 +31,12 @@ var formBuilderCompleter = {
         consts.forEach(function (c) {
             completions.push({value:c, score:1000, meta:"Enum"})
         });
-        completions.push({value:"f-text", score:999, meta:"Snippet"});
         completions.push({value:"f-email", score:999, meta:"Snippet"});
+        completions.push({value:"f-name", score:999, meta:"Snippet"});
         completions.push({value:"f-phone", score:999, meta:"Snippet"});
+        completions.push({value:"f-submit", score:999, meta:"Snippet"});
+        completions.push({value:"f-text", score:999, meta:"Snippet"});
+        completions.push({value:"f-textarea", score:999, meta:"Snippet"});
         completions.push({value:"f-url", score:999, meta:"Snippet"});
         callback(null, completions);
     }
@@ -56,7 +59,7 @@ snippets.push({
     hint \${5:field_hint}
     validations
         minlength 1
-        maxlength 50
+        maxlength 80
     end validations
 end field`,
     name: "Text Field",
@@ -74,7 +77,7 @@ snippets.push({
     hint \${5:We hate spam too. We will never spam you.}
     validations
         minlength 1
-        maxlength 50
+        maxlength 200
     end validations
 end field`,
     name: "Email Field",
@@ -90,10 +93,6 @@ snippets.push({
     value \${3:default_value}
     label \${4:Phone}
     hint \${5:field_hint}
-    validations
-        minlength 1
-        maxlength 50
-    end validations
 end field`,
     name: "Phone Field",
     tabTrigger: "f-phone"
@@ -110,7 +109,7 @@ snippets.push({
     hint \${5:field_hint}
     validations
         minlength 1
-        maxlength 250
+        maxlength 300
     end validations
 end field`,
     name: "URL Field",
@@ -134,6 +133,31 @@ end field`,
     name: "Textarea Field",
     tabTrigger: "f-textarea"
 });
+snippets.push({
+    content: `field
+    name name
+    icon fas fa-user-tie
+    type textbox
+    required
+    placeholder What is your name?
+    label Name
+    validations
+    minlength 1
+    maxlength 200
+    end validations
+end field`,
+    name: "Name Field",
+    tabTrigger: "f-name"
+});
+snippets.push({
+    content: `field
+    type submit
+    label Submit
+end field`,
+    name: "Submit Button",
+    tabTrigger: "f-submit"
+});
+
 
 snippetManager.register(snippets, "formbuilder");
 

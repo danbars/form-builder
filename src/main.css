@@ -3,7 +3,9 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: "Open Sans", sans-serif;
 }
+
 .flex {
     display: flex;
     flex-direction: row;
@@ -29,6 +31,16 @@ body {
     height: 50px;
     background-color: #f8f8f8;
 }
+
+#toolbar a {
+    text-decoration: none;
+    color: #000;
+}
+#toolbar span {
+    cursor: pointer;
+    color: #000;
+}
+
 #editor-wrapper {
     position: relative;
     width: 500px;
