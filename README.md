@@ -1,4 +1,4 @@
-# What is Form-Builder?
+## What is Form-Builder?
 ![screenshot](./form-builder-cast.gif)
 
 There are dozens of form builders out there. This one is different in that it doesn't ask you to fill in forms in order to create forms.
