@@ -1,5 +1,5 @@
 ---
-title: { form-builder }
+title: \{ form-builder \}
 ---
 
 ## What is Form-Builder?
