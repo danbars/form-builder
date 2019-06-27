@@ -12,8 +12,8 @@
     }
 
     function buildElements(elements) {
-        if (!elements || elements[0].element!=="section") {
-            //add syntethic section
+        if (!elements.length || elements[0].element!=="section") {
+            //add syntethic sectionForm-Builder.mp4
             elements.unshift({element:"section"})
         }
         let html = elements.reduce((acc, el) => {
