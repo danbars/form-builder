@@ -1,6 +1,6 @@
-## What is Form-Builder?
 ![screenshot](./form-builder-cast.gif)
 
+## What is Form-Builder?
 There are dozens of form builders out there. This one is different in that it doesn't ask you to fill in forms in order to create forms.
 It is directed toward developers and other people who feel comfortable with writing text and not using drag-and-drop fancy UI. The text is plain english and does not require learning any new language.
 
