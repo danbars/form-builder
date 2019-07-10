@@ -249,6 +249,8 @@ function initAddButtons() {
 initAddButtons();
 
 function getHtml() {
+    let text = `<link rel="stylesheet" href="themes/default.imports.css">
+<link rel="stylesheet" href="themes/default.css">`
     document.querySelector("#html-result-editor code").innerHTML = escapeHtml(formHtml);
     // document.querySelector("#copyToClipboard").dataset.dataClipboardText = formHtml;
     uglipop({class:'my-styling-class', //styling class for Modal
