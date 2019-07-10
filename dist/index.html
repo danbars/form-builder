@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form Builder</title>
+    <link rel="stylesheet" href="themes/default.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.10/split.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uglipop@1.0.0/uglipop.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-markup.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div id="toolbar">
+    <span id="logo">{form-builder}</span>
+    <span id="gethtml">Get HTML</span>
+    <span id="icons"><a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">Icons</a></span>
+</div>
+<div id="main" class="flex">
+    <div id="add-panel">
+        <h4>ADD</h4>
+        <div class="add-item" data-fieldname="Text Field">Text</div>
+        <div class="add-item" data-fieldname="Email Field">Email</div>
+        <div class="add-item" data-fieldname="Phone Field">Phone</div>
+        <div class="add-item" data-fieldname="Radio Group">Radio</div>
+        <div class="add-item" data-fieldname="URL Field">URL</div>
+        <div class="add-item" data-fieldname="Password Field">Password</div>
+        <div class="add-item" data-fieldname="Textarea Field">Textarea</div>
+        <div class="add-item" data-fieldname="Select Option">Select Option</div>
+        <div class="add-item" data-fieldname="Radio Group">Radio Group</div>
+        <div class="add-item" data-fieldname="Checkbox Group">Checkbox Group</div>
+    </div>
+    <div id="editor-wrapper">
+        <!--<h4>EDIT</h4>-->
+        <!--<button id="run-button" onclick="parseForm()">Run</button>-->
+        <div id="editor">
+<pre>form Contact Form
+    method post
+    autocomplete on
+    action https://www.form-data.com/fb
+    header Contact Us
+    section Personal Details
+    field
+        name name
+        type textbox
+        label Name
+        icon fas fa-user-tie
+        required
+        placeholder Please fill your name
+        value John Doe
+        validations
+            maxlength 40
+            minlength 2
+        end validations
+    end field
+    field
+        name email
+        type email
+        icon fas fa-envelope
+        required
+        label Email
+        placeholder Please fill your email
+        hint We hate spam too. We will never spam you.
+    end field
+    section Details
+    field
+        name message
+        type textarea
+        icon fas fa-comment-alt
+        required
+        label Your message
+        placeholder what would you like to say
+    end field
+    field
+        type submit
+        label Submit
+    end field
+end form</pre>
+        </div>
+    </div>
+    <div id="form-result">
+        <!--<h4>FORM</h4>-->
+        <div id="form" class="fb-theme-default"></div>
+    </div>
+</div>
+<div id="html-result">
+    <div id="html-result-editor">
+        <div id="copyToClipboard" >COPY TO CLIPBOARD</div>
+        <pre><code class="language-html">&lt;html>&lt;/html></code></pre>
+    </div>
+</div>
+
+<script src="ace/ace.js"></script>
+<script src="ace/ext-language_tools.js"></script>
+<script src="https://unpkg.com/nearley@2.16.0/lib/nearley.js"></script>
+<script src="./parser/grammar.js"></script>
+<script src="./builder.js"></script>
+<script src="editor-init.js"></script>
+
+<script>
+    Split(['#add-panel','#editor-wrapper', '#form-result'], {
+        sizes:[1,9,90],
+        minSize:[150,500],
+        gutter: function (index, direction) {
+            var gutter = document.createElement('div')
+            gutter.className = 'gutter gutter-' + direction
+            gutter.style.height = '100%'
+            return gutter
+        },
+        gutterSize: 6,
+    })
+</script>
+
+
+</body>
+</html>

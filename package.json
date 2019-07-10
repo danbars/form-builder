@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build_grammar": "nearleyc src/parser/grammar.ne -o src/parser/grammar.js",
-    "build_ace": "cd ./ace/;npm i;node ./Makefile.dryice.js --target ../src/ace;cd .."
+    "build_ace": "cd ./ace/;npm i;node ./Makefile.dryice.js --target ../src/ace;cd ..",
+    "build_themes": "sass ./src/themes/default.scss:./src/themes/default.css --update"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,10 @@
     "nearley": "^2.16.0"
   },
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-scss": "^1.4.0",
+    "moo": "^0.5.0",
     "scss": "^0.2.4"
   }
 }

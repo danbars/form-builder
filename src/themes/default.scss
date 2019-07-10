@@ -21,14 +21,22 @@
     font-size: 1.5em;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding: 0.25em 0;
+    color: pur
   }
 
   input,
-  label {
+  label,
+  select {
     display: block;
   }
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
   textarea,
-  input {
+  input,
+  select {
     font-size: 1em;
     padding: 0.5em;
     width: 100%;
@@ -54,6 +62,77 @@
       margin: 40px auto;
       cursor: pointer;
     }
+    &[type="radio"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 50%;
+      width: 1em;
+      height: 1em;
+      border: 1px solid rgba(0,0,0,0.3);
+      transition: 0.2s all linear;
+      position: relative;
+      top: 0.15em;
+      padding: 0 !important;
+      margin: 0;
+      display: inline-block;
+      &:checked {
+        border: 6px solid rgba(0, 100, 255, 1);
+        transition: 0.2s all linear;
+      }
+      + label {
+        display: inline;
+        padding-left: 0.5em;
+      }
+    }
+    &[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      &::-ms-check {
+        display: none;
+      }
+      border-radius: 0;
+      width: 1em;
+      height: 1em;
+      border: 1px solid rgba(0,0,0,0.3);
+      transition: 0.2s all linear;
+      position: relative;
+      top: 0.15em;
+      padding: 0 !important;
+      margin: 0;
+      display: inline-block;
+      /* Set here so that Windows' High-Contrast Mode can override */
+      color: #00b312;
+      &::before {
+        content: "✔";
+        position: absolute;
+        font-size: 1.2em;
+        right: -0.15em;
+        top: 0.2em;
+        visibility: hidden;
+        transition: 0.1s all linear;
+      }
+      &:checked::before {
+        /* Use `visibility` instead of `display` to avoid recalculating layout */
+        visibility: visible;
+        top: -0.4em;
+        transition: 0.1s all linear;
+      }
+      //&:checked {
+      //  border: 6px solid rgba(0, 100, 255, 1);
+      //  transition: 0.2s all linear;
+      //}
+      + label {
+        display: inline;
+        padding-left: 0.5em;
+      }
+      &:disabled {
+        //border-color: black;
+        background: #ddd;
+        color: gray;
+      }
+    }
   }
 
   span.form-hint {
@@ -71,15 +150,29 @@
     color: #A41300;
     text-decoration: none;
   }
+
+
   div.input-wrapper {
     position: relative;
+    fieldset {
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+    }
     &.with-icon {
       textarea,
-      input {
+      input,
+      select {
         padding-left: 2.3em;
         &:focus + i {
           color: rgba(0, 100, 255, 0.5);
           transition: all 0.3s ease-in-out;
+        }
+      }
+      fieldset {
+        & > legend > i {
+          position: static;
+          padding: 0 8px;
+          margin-top: 0;
         }
       }
       i {
