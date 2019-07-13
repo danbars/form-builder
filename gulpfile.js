@@ -7,7 +7,7 @@ const DIST = 'dist/';
 const ACE_BASE = 'src/ace/src/';
 const ACE_FILES = [ACE_BASE+'ace.js', ACE_BASE+'ext-language_tools.js', ACE_BASE+'snippets/text.js', ACE_BASE+'theme-monokai.js',ACE_BASE+'mode-formbuilder.js', ACE_BASE+'snippets/formbuilder.js'];
 const PARSER = 'src/parser/grammar.js';
-const THEMES = ['src/themes/default.css', 'src/themes/default.css.map'];
+const THEMES = ['src/themes/default.css', 'src/themes/default.css.map', 'src/themes/default.imports.css'];
 const EDITOR = ['src/*.js', 'src/*.html', 'src/*.css'];
 
 function build(cb) {
