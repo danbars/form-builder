@@ -252,8 +252,8 @@ let sharedHtml;
 //TODO: copy to clipboard should use this entire text
 function getHtml() {
     sharedHtml = `<!-- this should be placed in the HEAD -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danbars/form-builder@0.1/dist/themes/default.imports.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danbars/form-builder@0.1/dist/themes/default.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danbars/form-builder@0.2/dist/themes/default.imports.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danbars/form-builder@0.2/dist/themes/default.css">
 <!-- this should be placed anywhere you want the form to appear -->
 <div id="form" class="fb-theme-default">
 ${formHtml}
