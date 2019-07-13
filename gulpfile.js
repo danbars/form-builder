@@ -21,7 +21,7 @@ function copyToDist(cb) {
 }
 
 function copyAce() {
-    return src(ACE_FILES).pipe(dest(DIST+'ace/'));
+    return src(ACE_FILES, {base: ACE_BASE}).pipe(dest(DIST+'ace/'));
 }
 
 function copyParser() {
