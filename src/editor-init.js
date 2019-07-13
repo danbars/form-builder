@@ -248,10 +248,17 @@ function initAddButtons() {
 
 initAddButtons();
 
+let sharedHtml;
+//TODO: copy to clipboard should use this entire text
 function getHtml() {
-    let text = `<link rel="stylesheet" href="themes/default.imports.css">
-<link rel="stylesheet" href="themes/default.css">`
-    document.querySelector("#html-result-editor code").innerHTML = escapeHtml(formHtml);
+    sharedHtml = `<!-- this should be placed in the HEAD -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danbars/form-builder@0.1/dist/themes/default.imports.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danbars/form-builder@0.1/dist/themes/default.css">
+<!-- this should be placed anywhere you want the form to appear -->
+<div id="form" class="fb-theme-default">
+${formHtml}
+</div>`;
+    document.querySelector("#html-result-editor code").innerHTML = escapeHtml(sharedHtml);
     // document.querySelector("#copyToClipboard").dataset.dataClipboardText = formHtml;
     uglipop({class:'my-styling-class', //styling class for Modal
         source:'div', //'div' instead of 'html'
@@ -312,7 +319,7 @@ function escapeHtml(text) {
 function handleCopy() {
     let clipboard = new ClipboardJS('#copyToClipboard', {
         text: function(trigger) {
-            return formHtml;
+            return sharedHtml;
         }
     });
     clipboard.on('success', function(e) {
@@ -330,3 +337,4 @@ function handleCopy() {
 }
 
 handleCopy();
+
