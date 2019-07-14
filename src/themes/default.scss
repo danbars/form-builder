@@ -2,7 +2,7 @@
 .fb-theme-default {
   font-family: 'Open Sans', sans-serif;
   @media screen and (max-width: 600px) {
-    font-size: 20px;
+    font-size: 21px;
   }
   @media screen and (min-width: 600px) {
     font-size: 16px;
@@ -184,9 +184,15 @@
         font-size: 1.2em;
         left: 0.5em;
         top: 0;
-        line-height: 1.2em;
-        margin-top: 0.42em; /* 1/1.2*0.5 em is now x1.2 of the input field, because font-size is changed here*/
-        transform: translateY(-0.1em); /* because we have 0.2em more than the font in the input field*/
+        line-height: 1em;
+        /*1px - compensate for border size because we use box-sizing=border-box
+        0.4em - font size is set here therefore 1em is now x1.2 than the font size of the input field.
+                Input field is 2em (1em font + 0.5em padding top and bottom)
+                so 0.4 is half of the remaining space
+        */
+        margin-top: calc(0.4em + 1px); // input field has 1em font + 0.5em padding = 2em. icon size is 1.2em, leaving 0.8/2 for padding. using rem and not em because font-size is changed on this entity
+        //margin-top: 0.42em; /* 1/1.2*0.5 em is now x1.2 of the input field, because font-size is changed here*/
+        //transform: translateY(-0.1em); /* because we have 0.2em more than the font in the input field*/
       }
     }
   }
