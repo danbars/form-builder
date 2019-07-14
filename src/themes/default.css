@@ -1,7 +1,16 @@
 @charset "UTF-8";
 .fb-theme-default {
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+}
+@media screen and (max-width: 600px) {
+  .fb-theme-default {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .fb-theme-default {
+    font-size: 16px;
+  }
 }
 .fb-theme-default * {
   box-sizing: border-box;
