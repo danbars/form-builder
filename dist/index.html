@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="./themes/default.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.10/split.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uglipop@1.0.0/uglipop.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-markup.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
     <link rel="stylesheet" href="main.css">
@@ -18,6 +17,7 @@
     <span id="logo">{form-builder}</span>
     <span id="gethtml">Get HTML</span>
     <span id="icons"><a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">Icons</a></span>
+    <span id="help" class="js-cd-panel-trigger" data-panel="main">Help</span>
 </div>
 <div id="main" class="flex">
     <div id="add-panel">
@@ -85,7 +85,23 @@ end form</pre>
         <!--<h4>FORM</h4>-->
         <div id="form" class="fb-theme-default"></div>
     </div>
-</div>
+</div> <!-- end main section -->
+
+<div class="cd-panel cd-panel--from-right js-cd-panel-main"> <!-- side panel -->
+    <header class="cd-panel__header">
+        <h2>How to use the builder</h2>
+        <a href="#0" class="cd-panel__close js-cd-close">Close</a>
+    </header>
+
+    <div class="cd-panel__container">
+        <div class="cd-panel__content">
+            <script src="help.js"></script>
+        </div> <!-- cd-panel__content -->
+    </div> <!-- cd-panel__container -->
+</div> <!-- cd-panel -->
+
+
+
 <div id="html-result">
     <div id="html-result-editor">
         <div id="copyToClipboard" >COPY TO CLIPBOARD</div>
@@ -99,6 +115,11 @@ end form</pre>
 <script src="./parser/grammar.js"></script>
 <script src="./builder.js"></script>
 <script src="editor-init.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-markup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script>Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/'</script>
 
 <script>
     Split(['#add-panel','#editor-wrapper', '#form-result'], {
