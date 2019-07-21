@@ -79,10 +79,35 @@ When the form is submitted it is used to identify this field's value. It can onl
 <li><code><b>placeholder</b> &lt;text></code> - The placeholder that appears inside the field before the user has typed anything.</li>
 <li><code><b>value</b> &lt;text></code> - A value pre-filled for the user. Only affect fields that the user has can type into. 
 I.e. does not have any affect on checkboxes, radio buttons, and dropdowns.</li>
-<li><code><b>icon</b> &lt;classes></code> - Places an icon inside the input field. Currently not supported in Submit buttons. 
-You can use any icon from <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">Font Awesome</a></li>
-
+<li><code><b>icon</b> &lt;classes></code> - Places an icon inside the input field. Supported in all field types except for Submit buttons. 
+You can use any icon from <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">Font Awesome</a>. 
+Note you should probably use the free font (unless you have a license)</li>
 </ul>
+<br>
+In addition to those you can add <code>validations</code> and <code>options</code> blocks. See below.
+
+<h3>Validations</h3>
+You can add validation block for each field. Validation block starts with <code>validations</code> line 
+and ends with <code>end validations</code> line. <br>
+In between those lines you can add any number of validation rules:
+<ul>
+<li><code><b>maxlength</b> &lt;length></code> - maximum length of the text allowed in this field.</li>
+<li><code><b>minlength</b> &lt;length></code> - minimum length of the text allowed in this field.</li>
+<li><code><b>max</b> &lt;max value<</code> - Maximum numeric value</li>
+<li><code><b>min</b> &lt;min value<</code> - Minimum numeric value</li>
+</ul>
+
+<h3>Options</h3>
+Fields with type <code>select</code>, <code>radiogroup</code> and <code>checkboxgroup</code> can have options block that 
+starts with <code>options</code> line and ends with <code>end options</code> line. <br>
+In between those lines you can add any number of options lines. Each line has the form: <br>
+<code>&lt;quoted label> [| &lt;quoted value>] [| checked|selected]</code>
+<ul>
+<li><b>quoted label</b> - The label that appears in the select box or next to the checkbox / radio button. Must be within double quotes.</li>
+<li><b>quoted value</b> - Optional, the value of the field when submitted. If omitted, the label will be used as value. Must be within double quotes.</li>
+<li><b>checked|selected</b> - Either term can be used in all field types. Makes the option pre-selected or checked.</li>
+</ul>
+
 `);
 
 

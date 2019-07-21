@@ -3,7 +3,9 @@
 The form-builder language is implemented as three main parts:
 1. Ace editor - for highlight and autocomplete editor
 2. `nearley.js` parser - turns form-definition into structured json
-3. A builder that turns the json into html
+3. A builder that turns the json into html 
+
+In addition, there's a help file
 
 ### Adding to Ace editor
 
@@ -30,3 +32,6 @@ The grammar file is located at `src/parser/grammar`. It is similar concept of Ac
 1. Install [sass](https://sass-lang.com) globally using `npm install -g sass`
 1. Edit `src/themes/default.scss` and add any relevant css rules. 
 1. Compile the scss file using `npm run build_themes` and commit the result css and map files. It will be in the same folder.
+
+### Updating the help file
+1. Edit `src/help.js` and describe your additions.
