@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Form Builder</title>
+    <title>Form-Builder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./themes/default.imports.css">
     <link rel="stylesheet" href="./themes/default.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138353444-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-138353444-1');
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.10/split.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uglipop@1.0.0/uglipop.min.js"></script>
 
@@ -14,7 +24,7 @@
 </head>
 <body>
 <div id="toolbar">
-    <span id="logo">{form-builder}</span>
+    <img src="form-builder-logo.svg" height="42px">
     <span id="gethtml">Get HTML</span>
     <span id="icons"><a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">Icons</a></span>
     <span id="help" class="js-cd-panel-trigger" data-panel="main">Help</span>
