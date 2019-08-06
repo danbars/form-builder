@@ -19,7 +19,7 @@ editor.session.on('change', debounce(function() {
 
 var keywords = "form;name;header;method;autocomplete;action;section;field;type;required;placeholder;icon;value;hint;label;validations;maxlength;minlength;max;min;end validations;options;end options;end field".split(";");
 var vars = null;
-var consts = "post;get;on;off;textarea;textbox;phone;email;url;number;date;time;hidden;search;password;checkboxgroup;radiogroup;submit;select;combo;datepicker;checked;selected".split(";");
+var consts = "post;get;on;off;textarea;textbox;phone;email;url;number;date;time;hidden;search;password;checkboxgroup;radiogroup;submit;select;combo;datepicker;checked;selected;address;address-google".split(";");
 
 // create a completer object with a required callback function:
 var formBuilderCompleter = {
@@ -33,6 +33,7 @@ var formBuilderCompleter = {
         });
         completions.push({value:"f-checkboxes", score:999, meta:"Snippet"});
         completions.push({value:"f-email", score:999, meta:"Snippet"});
+        completions.push({value:"f-gaddress", score:999, meta:"Snippet"});
         completions.push({value:"f-name", score:999, meta:"Snippet"});
         completions.push({value:"f-password", score:999, meta:"Snippet"});
         completions.push({value:"f-phone", score:999, meta:"Snippet"});
@@ -233,6 +234,22 @@ end field`,
     name: "Checkbox Group",
     tabTrigger: "f-checkboxes"
 });
+snippets.push({
+    content: `field
+        name address
+        type address-google
+        label Address
+        icon fas fas fa-map-marker-alt
+        required
+        placeholder 4 Penny Lane, Liverpool, England
+        validations
+            maxlength 250
+            minlength 2
+        end validations
+    end field`,
+    name: "Google Address Field",
+    tabTrigger: "f-gaddress"
+});
 
 
 snippetManager.register(snippets, "formbuilder");
@@ -253,6 +270,10 @@ function getHtml() {
     sharedHtml = `<!-- this should be placed in the HEAD -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danbars/form-builder@0.1/dist/themes/default.imports.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/danbars/form-builder@0.1/dist/themes/default.css">
+<!-- only if you use address-google field, uncomment this line and replace YOUR_API_KEY with your Google API Key (see Help for instructions) -->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=fb_form.initAutocomplete"
+        async defer></script> -->
+        
 <!-- this should be placed anywhere you want the form to appear -->
 <div id="form" class="fb-theme-default">
 ${formHtml}
@@ -298,9 +319,22 @@ function parseForm() {
     console.log(formJson);
 //        jsonResultEditor.setValue(JSON.stringify(formJson, null,2));
     formHtml = builder(formJson);
+    // setInnerHtml(document.querySelector("#form"), formHtml);
     document.querySelector("#form").innerHTML = formHtml;
+    updateViewer("#form");
 }
 parseForm(); //first time
+
+// function setInnerHtml (elm, html) {
+//     elm.innerHTML = html;
+//     Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
+//         const newScript = document.createElement("script");
+//         Array.from(oldScript.attributes)
+//             .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
+//         newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+//         oldScript.parentNode.replaceChild(newScript, oldScript);
+//     });
+// }
 
 
 function escapeHtml(text) {

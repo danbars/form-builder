@@ -105,7 +105,7 @@ define("ace/mode/formbuilder_highlight_rules",["require","exports","module","ace
                 },
                 {
                     token: ["keyword", "text", "constant.language"],
-                    regex: /^(\s*type)(\s+)(textbox|phone|email|url|number|date|time|hidden|search|password|textarea|submit|select|combo|checkboxgroup|radiogroup)/,
+                    regex: /^(\s*type)(\s+)(textbox|phone|email|url|number|date|time|hidden|search|password|textarea|submit|select|combo|checkboxgroup|radiogroup|address-google|address)/,
                     next: "fielddef"
                 },
                 {
@@ -141,6 +141,11 @@ define("ace/mode/formbuilder_highlight_rules",["require","exports","module","ace
                 {
                     token: ["keyword", "text", "text"],
                     regex: /^(\s*icon)(\s+)([\w\s]+)/,
+                    next: "fielddef"
+                },
+                {
+                    token: ["keyword", "text", "text"],
+                    regex: /^(\s*googlekey)(\s+)(\w+)/,
                     next: "fielddef"
                 },
                 {

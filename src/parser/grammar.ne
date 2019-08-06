@@ -22,7 +22,7 @@ FIELD -> START_FIELD FIELD_PROPERTIES:* END_FIELD {% function(d) {var field={key
 FIELD_PROPERTIES -> (ID | COMMENT | NAME | TYPE | REQUIRED | AUTOFOCUS| PLACEHOLDER | VALUE | HINT | LABEL | ICON | VALIDATIONS | OPTIONS | AUTOCOMPLETE) {% function(d){return d[0][0]} %}
 START_FIELD -> _ "field"i _ "\n"
 END_FIELD -> _ "end field"i _ "\n"
-TYPE -> _ "type"i __ ("textbox"i | "phone"i | "email"i | "url"i | "search"i | "number"i | "password"i | "date"i | "time"i | "hidden"i | "textarea"i | "submit"i | "select"i | "combobox"i | "radiogroup"i | "checkboxgroup"i ) _ "\n" {% function(d){return {key:"type", value:d[3][0]}} %}
+TYPE -> _ "type"i __ ("textbox"i | "phone"i | "email"i | "url"i | "search"i | "number"i | "password"i | "date"i | "time"i | "hidden"i | "textarea"i | "submit"i | "select"i | "combobox"i | "radiogroup"i | "checkboxgroup"i | "address-google"i | "address"i  ) _ "\n" {% function(d){return {key:"type", value:d[3][0]}} %}
 REQUIRED -> _ "required"i _ "\n" {% function(d){return {key:"required", value:true}} %}
 AUTOFOCUS -> _ "autofocus"i _ "\n" {% function(d){return {key:"autofocus", value:true}} %}
 PLACEHOLDER -> _ "placeholder"i __ .:+ "\n" {% function(d){return {key:"placeholder", value:d[3].join("")}} %}

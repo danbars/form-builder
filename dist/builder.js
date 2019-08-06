@@ -1,24 +1,43 @@
 (function(w) {
 
+    //TODO: Add scriptRunner(form) that will return only the script blocks that should run only by the viewer (not related to html that user copies)
+    function updateViewer(formWrapper) {
+        //execute all script blocks
+        Array.from(document.querySelector(formWrapper).querySelectorAll("script")).forEach( oldScript => {
+            const newScript = document.createElement("script");
+            Array.from(oldScript.attributes)
+                .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
+            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+        //init address fields if needed (they are auto-initialized by google's script tag, but it is only executed once on page load
+        fb_form.initAutocomplete();
+    }
+
     function buildForm(form) {
-        return `<form 
+        form.base = "fb_form";
+        setId(form);
+        return `
+<form 
+    ${templates.id(form)}
     ${ form.action? `action="${form.action}"` : '' } 
     ${ form.method? `method="${form.method}"` : ''} 
     ${templates.autocomplete(form)}>
     ${ form.header? `<h1>${form.header}</h1>` : ''}
     <input type="hidden" name="_charset_" />
-    ${buildElements(form.elements)}
+    ${buildElements(form.elements, form)}
 </form>`;
     }
 
-    function buildElements(elements) {
+    function buildElements(elements, form) {
         if (!elements.length || elements[0].element!=="section") {
             //add syntethic sectionForm-Builder.mp4
             elements.unshift({element:"section"})
         }
         let html = elements.reduce((acc, el) => {
+            setId(el);
             let template = el.type ? (el.element + '.' + el.type) : el.element;
-            return acc + templates[template](el);
+            return acc + templates[template](el, form);
         }, '');
         if (inSection) {
             html += '</section>';
@@ -27,23 +46,26 @@
         return html;
     }
 
-    function getId(el) {
+    function setId(el) {
         if (el.id) {
             ids.push(el.id);
             return el.id;
         }
-        let base = el.name || el.type;
+        let base = el.base || el.name || el.type;
         if (ids.indexOf(base) < 0) {
             ids.push(base);
+            el.id = base;
             return base;
         }
         let i = 1;
         while (ids.indexOf(base+i)>=0) {i++}
         ids.push (base+i);
+        el.id = base+i;
         return base+i;
     }
     let ids = [];
     let inSection = false;
+
 
     let templates = {
         'section': el => {let str='';
@@ -59,10 +81,16 @@
         'field.email': el => templates.textinput(el,'email'),
         'field.url': el => templates.textinput(el,'url'),
         'field.password': el => templates.textinput(el,'password'),
+//-----------------------------
+        'field.address-google': (el, form) => {
+            return `${templates.textinput(el,'text')}
+    ${templates.googleAddressScript(el)}`
+        },
+//-----------------------------
         'field.submit': el => `<input type="submit" value="${el.label}"
     ${templates.id(el)}>`,
 //-----------------------------
-        'field.select': el => {el.id = getId(el);return `<div class="form-field form-select ${el.required?'required':''}">
+        'field.select': el => `<div class="form-field form-select ${el.required?'required':''}">
     ${templates.label(el)}
     <div class="input-wrapper ${el.icon?'with-icon':''}"><select ${templates.id(el)} 
             ${templates.name(el)} 
@@ -76,19 +104,19 @@
         ${templates.icon(el)} 
     </div>
         ${templates.hint(el)}
-</div>`},
+</div>`,
 //-----------------------------
         'options': el => {return el.options && el.options.length ? el.options.reduce((all, o) => {return all + `<option value="${o.value}" ${o.checked?"selected":""}>${o.label}</option>\n`}, ''): ''},
 //-----------------------------
-        'field.radiogroup': el => {el.id = getId(el);return `<div class="form-field form-radio ${el.required?'required':''}">
+        'field.radiogroup': el => `<div class="form-field form-radio ${el.required?'required':''}">
     ${templates.fieldsetwrapper(el, templates.radiooptions(el))}
     ${templates.hint(el)}
-</div>`},
+</div>`,
 //-----------------------------
-        'field.checkboxgroup': el => {el.id = getId(el);return `<div class="form-field form-checkbox ${el.required?'required':''}">
+        'field.checkboxgroup': el => `<div class="form-field form-checkbox ${el.required?'required':''}">
     ${templates.fieldsetwrapper(el, templates.checkboxoptions(el))}
     ${templates.hint(el)}
-</div>`},
+</div>`,
 //-----------------------------
         'radiooptions': el => {
             return el.options && el.options.length ?
@@ -115,7 +143,7 @@
     </fieldset>
 </div>`,
 //-----------------------------
-        'textinput': (el,type) => {el.id = getId(el);return `<div class="form-field form-text form-${type} ${el.required?'required':''}">
+        'textinput': (el,type) => `<div class="form-field form-text form-${type} ${el.required?'required':''}">
     ${templates.label(el)}
     <div class="input-wrapper ${el.icon?'with-icon':''}">
         <input type="${type}" 
@@ -129,11 +157,11 @@
         ${templates.icon(el)} 
     </div>
         ${templates.hint(el)}
-</div>`},
+</div>`,
 //-----------------------------
-        'field.textarea': el => {el.id = getId(el);return `<div class="form-field form-text form-textartea ${el.required?'required':''}">
+        'field.textarea': el => `<div class="form-field form-text form-textartea ${el.required?'required':''}">
     ${templates.label(el)}
-    <div class="input-wrapper ${el.icon?'with-icon':''}"">
+    <div class="input-wrapper ${el.icon?'with-icon':''}">
         <textarea 
             ${templates.id(el)} 
             ${templates.name(el)} 
@@ -144,7 +172,7 @@
         ${templates.icon(el)} 
     </div>
         ${templates.hint(el)}
-</div>`},
+</div>`,
 //-----------------------------
         'id': el => `id="${el.id}"`,
         'label': el => el.label || el.required? `<label for="${el.id}">${el.label || ''}${el.required?`<abbr class="required" title="required">*</abbr>`:''}</label>` : '',
@@ -156,6 +184,36 @@
         'name': el => `name="${el.name? el.name : 'MISSING_NAME'}"`,
         'hint': el => el.hint? `<span class="form-hint">${el.hint}</span>` : '',
         'icon': el => el.icon? `<i class="${el.icon}" aria-hidden="true"></i>`: '',
+//------------------------------
+        'googleAddressScript': el => `<script>
+let autocomplete_${el.id};
+var fb_form = fb_form || {};
+fb_form.acFunctions = fb_form.acFunctions || [];
+
+function initAutocomplete_${el.id}() {
+  // Create the autocomplete object, restricting the search predictions to
+  // geographical location types.
+  autocomplete_${el.id} = new google.maps.places.Autocomplete(
+      document.getElementById('${el.id}'), {types: ['geocode']});
+
+  // Avoid paying for data that you don't need by restricting the set of
+  // place fields that are returned to just the address components.
+  //autocomplete_${el.id}.setFields(['address_component']);
+
+  // When the user selects an address from the drop-down, populate the
+  // address fields in the form.
+  //autocomplete_${el.id}.addListener('place_changed', fillInAddress);
+}
+fb_form.acFunctions.push(initAutocomplete_${el.id});
+
+fb_form.initAutocomplete = fb_form.initAutocomplete || function() {
+    fb_form.acFunctions.forEach(fn => {
+        fn();
+    })
+}
+
+</script>`
     };
     w.builder = buildForm;
+    w.updateViewer = updateViewer;
 })(window);

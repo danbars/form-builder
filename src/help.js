@@ -73,7 +73,7 @@ Fields are the main part of the form. They have the following attributes that ca
 <ul>
 <li><code><b>name</b> &ltname></code> - The <i>name</i> attribute of the html field. It does not affect the appearance of the form. 
 When the form is submitted it is used to identify this field's value. It can only contain English letters and digits.</li>
-<li><code><b>type</b> textbox|phone|email|url|search|password|textarea|submit|select|radiogroup|checkboxgroup </code> - The type of the field</li>
+<li><code><b>type</b> textbox | phone | email | url | search | password | textarea | submit | select | radiogroup | checkboxgroup | address-google | address </code> - The type of the field</li>
 <li><code><b>label</b> &lt;text></code> - The label that appears above the field. Can be any text you like.</li>
 <li><code><b>required</b></code> - Marks the field as required. Remove completely if the field is optional.</li>
 <li><code><b>placeholder</b> &lt;text></code> - The placeholder that appears inside the field before the user has typed anything.</li>
@@ -85,6 +85,17 @@ Note you should probably use the free font (unless you have a license)</li>
 </ul>
 <br>
 In addition to those you can add <code>validations</code> and <code>options</code> blocks. See below.
+
+<h3>Address Fields</h3>
+If you set the address field to be <code>address-google</code> you'll have to provide a Google API Key. 
+The key should be pasted onto the script tag of Google maps - you'll see it when you grab your form's HTML.<br>
+To acquire a key follow the instructions <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">here</a> <br>
+Make sure you restrict the key to be used only in your domain, and only for <em>Maps Javascript API</em>. 
+The instructions for restriction are on the same page. <br><br>
+Note that it is not mentioned that you have to enable Maps API and Places API before you
+can restrict the key to use it. To do that go <a href="https://console.cloud.google.com/marketplace/details/google/maps-backend.googleapis.com">here</a>
+and <a href="https://console.developers.google.com/apis/library/places-backend.googleapis.com">here</a> 
+and click <em>Enable</em> (or go there through the hamburger menu > marketplace > search for <i>Maps Javascript API</i> and <i>Places API</i>)
 
 <h3>Validations</h3>
 You can add validation block for each field. Validation block starts with <code>validations</code> line 
